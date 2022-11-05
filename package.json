@@ -1,0 +1,20 @@
+{
+  "name": "hunt-manager",
+  "version": "1.0.0",
+  "description": "A tracker for the hunt. Save connections, messages, and interview times for a one job please.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node backend/server.js",
+    "server": "nodemon backend/server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "mongoose": "^6.7.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
