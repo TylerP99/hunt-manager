@@ -3,7 +3,7 @@ const router = express.Router();
 
 const CompanyController = require("../../controllers/company-controller");
 
-router.get("/", CompanyController.get_company_handler);
+router.get("/", CompanyController.get_companies_handler);
 
 router.post("/", CompanyController.create_company_handler);
 
