@@ -1,11 +1,12 @@
 const express = require("express");
+
+// Use .env file for environement variables
+require("dotenv").config(); 
+
 const port = process.env.PORT || 3000;
 
 // Custom error handler
 const {errorHandler} = require("./middleware/errorHandler");
-
-// Use .env file for environement variables
-require("dotenv").config(); 
 
 // Connect to MongoDB via Mongoose
 (require("./config/db"))();
