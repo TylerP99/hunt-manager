@@ -19,11 +19,11 @@ const ConnectionController = {
     },
 
     get_connection_from_request: (requestBody, user) => {
-
+        
     },
 
     validate_connection: (connection) => {
-        
+
     },
 
 };
