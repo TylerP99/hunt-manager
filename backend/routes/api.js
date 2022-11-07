@@ -8,5 +8,7 @@ router.use("/connection", require("./apis/connection.js"));
 
 router.use("/position", require("./apis/position.js"));
 
+router.use("/user", require("./apis/user.js"));
+
 
 module.exports = router;
