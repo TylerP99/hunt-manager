@@ -1,4 +1,8 @@
 import { useState, useEffect } from 'react'
+import {useSelector, useDispatch} from "react-redux";
+import {useNavigate} from "react-router-dom";
+import {toast} from "react-toastify";
+import {register, reset} from "../features/auth/authSlice";
 
 function RegisterForm() {
 
@@ -13,6 +17,22 @@ function RegisterForm() {
     // Form state destructured for better readablilty and less repeating
     const {username, email, password, password2} = formData;
 
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+
+    const {user, isLoading, isError, isSuccess, message} = useSelector((state) => state.auth);
+
+    useEffect(() => {
+        if(isError) {
+            toast.error(message);
+        }
+        if(isSuccess || user) {
+            navigate("/");
+        }
+
+        dispatch(reset);
+    }, [user, isError, isSuccess, message, navigate, dispatch]);
+
     // Change function for managing form state as controlled elements
     const onChange = (e) => {
         setFormData((prevState) => ({
@@ -24,7 +44,20 @@ function RegisterForm() {
     // Submit function for form
     const onSubmit = (e) => {
         e.preventDefault();
-        console.log("Submit");
+        
+        if(password !== password2) {
+            toast.error("Passwords must match")
+        }
+        else {
+            const userData = {
+                username, 
+                email, 
+                password,
+                password2,
+            }
+
+            dispatch(register(userData));
+        }
     }
 
     return (
