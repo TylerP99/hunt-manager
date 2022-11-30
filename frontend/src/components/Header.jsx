@@ -7,10 +7,10 @@ const linkStyles = "flex items-center space-x-2 p-1 hover:text-lightBlue";
 function Header() {
   const signedIn = false;
   return (
-    <header className="text-lg border-b-4 max-w-full py-2">
+    <header className="text-lg border-b-4 max-w-full py-2 mb-10">
       <nav className="flex justify-between max-w-7xl mx-auto">
         <div>
-          <Link className={linkStyles} to="/">Hunt Manager</Link>
+          <Link className={linkStyles + " text-darkBlue font-bold text-2xl"} to="/">Hunt Manager</Link>
         </div>
         <ul className="flex justify-evenly space-x-10">
           {signedIn ? 
