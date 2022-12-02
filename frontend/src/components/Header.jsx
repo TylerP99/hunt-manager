@@ -2,17 +2,25 @@ import { FaSignInAlt, FaSignOutAlt, FaUser } from "react-icons/fa"
 
 import {Link} from "react-router-dom";
 
+const headerContainerStyles = "text-lg max-w-full py-2 mb-10 shadow-md";
+
+const navStyles = "flex justify-between max-w-7xl mx-auto";
+
+const logoStyles = " text-darkBlue font-bold text-2xl";
+
+const ulStyles = "flex justify-evenly space-x-10";
+
 const linkStyles = "flex items-center space-x-2 p-1 hover:text-lightBlue";
 
 function Header() {
   const signedIn = false;
   return (
-    <header className="text-lg border-b-4 max-w-full py-2 mb-10">
-      <nav className="flex justify-between max-w-7xl mx-auto">
+    <header className={headerContainerStyles}>
+      <nav className={navStyles}>
         <div>
-          <Link className={linkStyles + " text-darkBlue font-bold text-2xl"} to="/">Hunt Manager</Link>
+          <Link className={linkStyles + logoStyles} to="/">Hunt Manager</Link>
         </div>
-        <ul className="flex justify-evenly space-x-10">
+        <ul className={ulStyles}>
           {signedIn ? 
           (<li>
             <Link className={linkStyles} to="/logout">

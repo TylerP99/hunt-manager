@@ -1,22 +1,7 @@
-function Landing({companies}) {
+function Landing() {
   return (
-    <section>
-      <h1>Hello, Username!</h1>
-      <section>
-        Upcoming Stuff
-      </section>
-
-      <section>
-        <CompanyShort />
-      </section>
-    </section>
+    <div>Dashboard</div>
   )
 }
 
-function CompanyShort({company}) {
-  return(
-    <h2>Company name</h2>
-  )
-}
-
-export default Landing
+export default Landing;
