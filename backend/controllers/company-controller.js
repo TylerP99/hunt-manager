@@ -73,10 +73,37 @@ const CompanyController = {
     },
 
     /*
+    @desc:    Creates a new connection and adds it to the company position array
+    @route:   PUT /api/company/addConnection/:id
+    @access:  Private
+    */
+    add_connection_handler: async (req, res, next) => {
+        try {
+
+        }
+        catch(e) {
+            console.error(e);
+            next(e);
+        }
+    },
+
+    /*
+    @desc:    Creates a new position and adds it to the company position array
+    @route:   PUT /api/company/addPosition/:id
+    @access:  Private
+    */
+    add_position_handler: async (req, res, next) => {
+        try {
+
+        }
+        catch(e) {
+            console.error(e);
+            next(e);
+        }
+    },
+
+    /*
     @desc:    Deletes a specified company document from the database
-    @params:  {
-        id: Company id,
-    }
     @route:   DELETE /api/company/:id
     @access:  Private
     */

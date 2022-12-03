@@ -10,6 +10,10 @@ router.post("/", authProtect, CompanyController.create_company_handler);
 
 router.put("/:id", authProtect, CompanyController.update_company_handler);
 
+router.put("/addConnection/:id", authProtect, CompanyController.update_company_handler);
+
+router.put("/addPosition/:id", authProtect, CompanyController.update_company_handler);
+
 router.delete("/:id", authProtect, CompanyController.delete_company_handler);
 
 
