@@ -1,3 +1,5 @@
+const AsyncHandler = require("express-async-handler");
+
 const Company = require("../models/Company");
 
 const CompanyController = {
@@ -7,42 +9,30 @@ const CompanyController = {
     @route:   POST /api/company
     @access:  Private (Users with authentication)
     */
-    create_company_handler: async (req, res, next) => {
-        try{
-            const company = CompanyController.get_company_from_request(req.body);
+    create_company_handler: AsyncHandler( async (req, res) => {
+        const company = CompanyController.get_company_from_request(req.body);
 
-            const errors = CompanyController.validate_company(company);
+        const errors = CompanyController.validate_company(company);
 
-            await CompanyController.create_company(company);
-
-            if(errors.length) {
-                return res.status(400).json({errors});
-            }
-
-            res.status(200).json(company);
+        if(errors.length) {
+            return res.status(400).json({errors});
         }
-        catch(e) {
-            console.error(e);
-            next(e);
-        }
-    },
+
+        await CompanyController.create_company(company);
+
+        res.status(200).json(company);
+    }),
 
     /*
     @desc:    Gets all user's company entries
     @route:   GET /api/company
     @access:  Private
     */
-    get_companies_handler: async (req, res, next) => {
-        try {
-            const companies = await Company.find();
+    get_companies_handler: AsyncHandler( async (req, res) => {
+        const companies = await Company.find({user: req.user._id});
 
-            res.status(200).json({companies: companies});
-        }
-        catch(e) {
-            console.error(e);
-            next(e);
-        }
-    },
+        res.status(200).json({companies: companies});
+    }),
 
     /*
     @desc:    Updates a specifies company's information within the database
@@ -52,72 +42,68 @@ const CompanyController = {
     @route:   PUT /api/company/:id
     @access:  Private
     */
-    update_company_handler: async (req, res, next) => {
-        try {
-            const updatedCompany = CompanyController.get_company_from_request(req.body);
+    update_company_handler: AsyncHandler( async (req, res) => {
+        const updatedCompany = CompanyController.get_company_from_request(req.body);
 
-            const errors = CompanyController.validate_company(updatedCompany);
+        const errors = CompanyController.validate_company(updatedCompany);
 
-            await CompanyController.update_company(updatedCompany, req.params.id);
-
-            if(errors.length) {
-                return res.status(400).json({errors});
-            }
-
-            res.status(200).json(updatedCompany);
+        if(errors.length) {
+            return res.status(400).json({errors});
         }
-        catch(e) {
-            console.error(e);
-            next(e);
-        }
-    },
+
+        await CompanyController.update_company(updatedCompany, req.params.id);
+
+        res.status(200).json(updatedCompany);
+    }),
 
     /*
     @desc:    Creates a new connection and adds it to the company position array
     @route:   PUT /api/company/addConnection/:id
     @access:  Private
     */
-    add_connection_handler: async (req, res, next) => {
-        try {
+    add_connection_handler: AsyncHandler( async (req, res) => {
+        // Get connection from request
 
-        }
-        catch(e) {
-            console.error(e);
-            next(e);
-        }
-    },
+        // Validate connection
+
+        // Return if errors
+
+        // Create connection in db
+
+        // Link connection to company
+
+        // Respond with connection object
+    }),
 
     /*
     @desc:    Creates a new position and adds it to the company position array
     @route:   PUT /api/company/addPosition/:id
     @access:  Private
     */
-    add_position_handler: async (req, res, next) => {
-        try {
+    add_position_handler: AsyncHandler( async (req, res) => {
+        // Get position from request
 
-        }
-        catch(e) {
-            console.error(e);
-            next(e);
-        }
-    },
+        // Validate position
+
+        // Return if errors
+
+        // Create position in db
+
+        // Link position to company
+
+        // Respond with position object
+    }),
 
     /*
     @desc:    Deletes a specified company document from the database
     @route:   DELETE /api/company/:id
     @access:  Private
     */
-    delete_company_handler: async (req, res, next) => {
-        try {
-            const id = await CompanyController.delete_company(req.params.id);
+    delete_company_handler: AsyncHandler( async (req, res) => {
+        const id = await CompanyController.delete_company(req.params.id);
 
-            res.status(200).json({id:id});
-        }
-        catch(e) {
-            console.error(e);
-            next(e);
-        }
-    },
+        res.status(200).json({id:id});
+    }),
 
     /*
     @desc: Takes in a validated company object and creates a document in the company collection
@@ -137,13 +123,13 @@ const CompanyController = {
     @params: updatedCompany: A validated company object
              id: MongodDB id of company to update
 
-    @returns: Id of created company, or will throw an error
+    @returns: Id of created company, or null if company not found
     */
     update_company: async (updatedCompany, id) => {
-        updatedCompany = await Company.findByIdAndUpdate(id, updatedCompany);
+        const updatedCompany = await Company.findByIdAndUpdate(id, updatedCompany);
 
         if(!updatedCompany) {
-            throw new Error("Company not found");
+            return null;
         }
 
         return updatedCompany._id;
@@ -154,13 +140,13 @@ const CompanyController = {
 
     @params: id: MongoDB id of company document to delete
 
-    @returns: Id of deleted company, or will throw an error
+    @returns: Id of deleted company, or null is company is not found
     */
     delete_company: async (id) => {
-        deletedCompany = await Company.findByIdAndDelete(id);
+        const deletedCompany = await Company.findByIdAndDelete(id);
 
         if(!deletedCompany) {
-            throw new Error("Company not found");
+            return null;
         }
 
         return deletedCompany._id;
@@ -181,6 +167,8 @@ const CompanyController = {
             description: (requestBody.description?.length > 0) ? requestBody.description : null,
 
             websiteURL: (requestBody.websiteURL?.length > 0) ? requestBody.websiteURL : null,
+
+            user: req.user._id,
         };
 
         return company;
