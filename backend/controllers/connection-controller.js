@@ -1,3 +1,5 @@
+const AsyncHandler = require("express-async-handler");
+
 const Connection = require("../models/Connection");
 
 const ConnectionController = {
@@ -7,112 +9,76 @@ const ConnectionController = {
     @route:  POST /api/connection
     @access: Private
     */
-    create_connection_handler: async (req, res, next) => {
-        try {
-            const connection = ConnectionController.get_connection_from_request(req.body);
+    create_connection_handler: AsyncHandler( async (req, res) => {
+        // Get connection from body
+        const connection = ConnectionController.get_connection_from_request(req.body, req.user);
 
-            const errors = ConnectionController.validate_connection(connection);
+        // Validate connection object
+        const errors = ConnectionController.validate_connection(connection);
 
-            if(errors.length) {
-                return res.status(400).json({errors:errors});
-            }
+        // If there are errors, respond with them
+        if(errors.length) return res.status(400).json({errors:errors});
+        
+        // Create connection in db
+        const newConnection = await Connection.create(connection);
 
-            const newConnection = await ConnectionController.create_connection(connection);
-
-            res.status(200).json({connection: newConnection});
-        }
-        catch(e) {
-            console.error(e);
-            next(e);
-        }
-    },
+        // Respond with connection
+        res.status(200).json({connection: newConnection});
+    }),
 
     /*
     @desc:   Gets all connections from database
     @route:  GET /api/connection
     @access: Private
     */
-    get_connections_handler: async (req, res, next) => {
-        try {
-            const connections = await Connection.find();
-
-            res.status(200).json({connections:connections});
-        }
-        catch(e) {
-            console.error(e);
-            next(e);
-        }
-    },
+    get_connections_handler: AsyncHandler( async (req, res) => {
+        const connections = await Connection.find({user: req.user._id});
+        res.status(200).json({connections:connections});
+    }),
 
     /*
     @desc:   
     @route:  
     @access: 
     */
-    update_connection_handler: async (req, res, next) => {
-        try {
-            let updatedConnection = ConnectionController.get_connection_from_request(req.body);
-            const errors = ConnectionController.validate_connection(updatedConnection);
+    update_connection_handler: AsyncHandler( async (req, res) => {
+        // Get connection from db for ownership check
+        const connection = await Connection.findById(req.params.id);
 
-            if(errors.length) {
-                return res.status(400).json({errors:errors});
-            }
+        if(!connection) return res.status(400).json([{msg: "Connection not found"}]);
+        if(connection.user != req.user._id) return res.status(401).json([{msg: "Not authorized to access this resource"}]);
 
-            const newConnection = await ConnectionController.update_connection(updatedConnection, req.params.id);
-            
-            res.status(200).json({connection: newConnection});
-        }
-        catch(e) {
-            console.error(e);
-            next(e);
-        }
-    },
+        // Get connection from request
+        let updatedConnection = ConnectionController.get_connection_from_request(req.body, req.user);
+
+        // Validate connection
+        const errors = ConnectionController.validate_connection(updatedConnection);
+
+        // If there are errors, respond with them
+        if(errors.length) return res.status(400).json({errors:errors});
+
+        // Update connection in db, get updated connection back
+        const newConnection = await ConnectionController.update_connection(updatedConnection, req.params.id, {new: true});
+        
+        // Respond with new connection
+        res.status(200).json({connection: newConnection});
+    }),
 
     /*
     @desc:   
     @route:  
     @access: 
     */
-    delete_connection_handler: async (req, res, next) => {
-        try {
-            const id = await ConnectionController.delete_connection(req.params.id);
-            res.status(200).json({id:id});
-        }
-        catch(e) {
-            console.error(e);
-            next(e);
-        }
-    },
+    delete_connection_handler: AsyncHandler( async (req, res) => {
+        // Get connection from db for ownership check
+        const connection = await Connection.findById(req.params.id);
 
-    /*
-    @desc:    
-    @params:  
-    @returns:  
-    */
-    create_connection: async (connection) => {
-        const newConnection = await Connection.create(connection);
-        return newConnection;
-    },
+        if(!connection) return res.status(400).json([{msg: "Connection not found"}]);
+        if(connection.user != req.user._id) return res.status(401).json([{msg: "Not authorized to access this resource"}]);
 
-    /*
-    @desc:    
-    @params:  
-    @returns:  
-    */
-    update_connection: async (updatedConnection, id) => {
-        const newConnection = await Connection.findByIdAndUpdate(id, updatedConnection);
-        return newConnection;
-    },
-
-    /*
-    @desc:    
-    @params:  
-    @returns:  
-    */
-    delete_connection: async (id) => {
-        const oldConnection = await Connection.findByIdAndDelete(id);
-        return oldConnection._id;
-    },
+        const id = await ConnectionController.delete_connection(req.params.id);
+        res.status(200).json({id:id});
+    }),
 
     /*
     @desc:    
@@ -127,6 +93,7 @@ const ConnectionController = {
             email: (requestBody.email?.length > 0) ? requestBody.email : null,
             twitter: (requestBody.twitter?.length > 0) ? requestBody.twitter : null,
             linkedin: (requestBody.linkedin?.length > 0) ? requestBody.linkedin : null,
+            user: req.user._id,
         };
 
         return connection;

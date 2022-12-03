@@ -1,3 +1,5 @@
+const AsyncHandler = require("express-async-handler");
+
 const Position = require("../models/Position");
 
 const PositionController = {
@@ -7,108 +9,76 @@ const PositionController = {
     @route:  
     @access: 
     */
-    create_position_handler: async (req, res, next) => {
-        try {
-            const position = PositionController.get_position_from_request(req.body);
-            const errors = PositionController.validate_position(position);
+    create_position_handler: AsyncHandler( async (req, res) => {
+        // Get position from request body
+        const position = PositionController.get_position_from_request(req.body, req.user);
 
-            if(errors.length) {
-                return res.status(400).json({errors: errors});
-            }
+        // Validate position object
+        const errors = PositionController.validate_position(position);
 
-            const newPosition = await PositionController.create_position(position);
-            res.status(200).json({position: newPosition});
-        }
-        catch(e) {
-            console.error(e);
-            next(e);
-        }
-    },
+        // If there are errors, respond
+        if(errors.length) return res.status(400).json({errors: errors});
 
-    /*
-    @desc:   
-    @route:  
-    @access: 
-    */
-    get_position_handler: async (req, res, next) => {
-        try {
-            const positions = await Position.find();
-            res.status(200).json({positions: positions});
-        }
-        catch(e) {
-            console.error(e);
-            next(e);
-        }
-    },
+        // Create position in database
+        const newPosition = await PositionController.create_position(position);
+
+        // Respond with position
+        res.status(200).json({position: newPosition});
+    }),
 
     /*
     @desc:   
     @route:  
     @access: 
     */
-    update_position_handler: async (req, res, next) => {
-        try {
-            const updatedPosition = PositionController.get_position_from_request(req.body);
-            const errors = PositionController.validate_position(updatedPosition);
-
-            if(errors.length) {
-                return res.status(400).json({errors: errors});
-            }
-
-            const newPosition = await PositionController.update_position(updatedPosition, req.params.id);
-            res.status(200).json({position: newPosition});
-        }
-        catch(e) {
-            console.error(e);
-            next(e);
-        }
-    },
+    get_position_handler: AsyncHandler( async (req, res) => {
+        const positions = await Position.find({user: req.user._id});
+        res.status(200).json({positions: positions});
+    }),
 
     /*
     @desc:   
     @route:  
     @access: 
     */
-    delete_position_handler: async (req, res, next) => {
-        try {
-            const deletedID = await PositionController.delete_position(req.params.id);
-            res.status(200).json({id:deletedID});
-        }
-        catch(e) {
-            console.error(e);
-            next(e);
-        }
-    },
+    update_position_handler: AsyncHandler( async (req, res) => {
+        // Get position from db for verification
+        const position = await Position.findById(req.user._id);
+
+        if(!position) return res.status(400).json([{msg: "Position not found"}]);
+        if(position.user != req.user._id) return res.status(401).json([{msg: "Not authorized to access this resource"}]);
+
+        // Get position from request body
+        const updatedPosition = PositionController.get_position_from_request(req.body);
+
+        // Validate position
+        const errors = PositionController.validate_position(updatedPosition);
+
+        // If there are errors, respond
+        if(errors.length) return res.status(400).json({errors: errors});
+        
+        // Update position in db
+        const newPosition = await PositionController.update_position(updatedPosition, req.params.id, {new: true});
+
+        // Respond
+        res.status(200).json({position: newPosition});
+    }),
 
     /*
-    @desc:    
-    @params:  
-    @returns:  
+    @desc:   
+    @route:  
+    @access: 
     */
-    create_position: async (position) => {
-        const newPosition = await Position.create(position);
-        return newPosition;
-    },
+    delete_position_handler: AsyncHandler( async (req, res) => {
+        // Get position from db for verification
+        const position = await Position.findById(req.user._id);
 
-    /*
-    @desc:    
-    @params:  
-    @returns:  
-    */
-    update_position: async (updatedPosition, id) => {
-        const newPosition = await Position.findByIdAndUpdate(updatedPosition, id);
-        return newPosition;
-    },
-
-    /*
-    @desc:    
-    @params:  
-    @returns:  
-    */
-    delete_position: async (id) => {
-        const oldPosition = await Position.findByIdAndDelete(id);
-        return oldPosition._id;
-    },
+        if(!position) return res.status(400).json([{msg: "Position not found"}]);
+        if(position.user != req.user._id) return res.status(401).json([{msg: "Not authorized to access this resource"}]);
+        
+        const deletedID = await PositionController.delete_position(req.params.id);
+        res.status(200).json({id:deletedID});
+    }),
 
     /*
     @desc:    
