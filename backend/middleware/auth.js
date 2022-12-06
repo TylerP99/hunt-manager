@@ -39,7 +39,7 @@ module.exports = {
         if(!token) return res.status(401).json([{msg: "Not authorized, no token"}]);
 
         // Decode token
-        jwt.verify(token, preovess.env.JWT_AUTH_SECRET, 
+        jwt.verify(token, process.env.JWT_AUTH_SECRET, 
             async (err, decoded) => {
                 // If token is invalid, respond
                 if(err) return res.status(401).json([{msg: "Not authorized"}]);

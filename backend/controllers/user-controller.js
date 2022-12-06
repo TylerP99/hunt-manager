@@ -48,7 +48,7 @@ const UserController = {
         const refresh = UserController.genRefreshToken({_id: newUser._id});
 
         // Store in httpOnly cookie
-        res.cookie("refresh-token", refresh, 
+        res.cookie("refreshToken", refresh, 
         {
             httpOnly: true,
             sameSite: "None",
@@ -63,7 +63,7 @@ const UserController = {
                 username: newUser.username,
                 email: newUser.email,
             },
-            token: UserController.genJWT(newUser._id),
+            token: UserController.genAuthToken(newUser._id),
         });
         
     }),
@@ -108,12 +108,13 @@ const UserController = {
                 username: user.username,
                 email: user.email,
             },
-            token: UserController.genJWT(user._id),
+            token: UserController.genAuthToken(user._id),
         })
     }),
 
     refreshAccess: AsyncHandler( async (req, res) => {
         // Check if there is a token in cookies
+        console.log(req.cookies);
         if(!req.cookies?.refreshToken) {
             return res.status(401).json([{msg: "Not authorized, no refresh token"}]);
         }
@@ -154,8 +155,8 @@ const UserController = {
     @returns:  json web token with id stored
     */
     genAuthToken: (id) => {
-        return jwt.sign({id}, process.env.JWT_AUTH_SECRET, {
-            expiresIn: "15m",
+        return jwt.sign({_id: id}, process.env.JWT_AUTH_SECRET, {
+            expiresIn: "15s",
         });
     },
 

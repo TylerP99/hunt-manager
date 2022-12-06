@@ -13,8 +13,12 @@ const {errorHandler} = require("./middleware/errorHandler");
 
 const app = express();
 
+
 const cors = require("cors");
-app.use(cors());
+app.use(cors({credentials: true, origin: "http://localhost:5000"}));
+
+const cookieParser = require("cookie-parser");
+app.use(cookieParser());
 
 // Body middleware
 app.use(express.json());

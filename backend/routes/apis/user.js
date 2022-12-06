@@ -3,12 +3,14 @@ const router = express.Router();
 
 const UserController = require("../../controllers/user-controller");
 
-const { authProtect } = require("../../middleware/auth");
+const { protectRoute } = require("../../middleware/auth");
 
 router.post("/create", UserController.createUser);
 
 router.post("/authenticate", UserController.authenticateUser);
 
-router.get("/getUser", authProtect, UserController.getUser);
+router.post("/refresh", UserController.refreshAccess);
+
+router.get("/getUser", protectRoute, UserController.getUser);
 
 module.exports = router;
