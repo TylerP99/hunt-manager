@@ -15,6 +15,11 @@ const PositionSchema = new mongoose.Schema({
     url: {
         type: String,
     },
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: "User",
+    },
 }, { timestamps: true } );
 
 const Position = mongoose.model("Position", PositionSchema);

@@ -18,6 +18,11 @@ const CompanySchema = new mongoose.Schema({
     connections: {
         type: Array,
         default: [],
+    },
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: "User",
     }
 }, { timestamps:true } );
 
