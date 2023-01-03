@@ -129,9 +129,10 @@ const PositionController = {
     },
 
     /*
-    @desc:    
-    @params:  
-    @returns:  
+    @desc:    Constructs a position object from an incoming request body and user data
+    @params:  requestBody: Incoming request body
+                     user: Requesting user data
+    @returns: The constructed position object
     */
     get_position_from_request: (requestBody, user) => {
         const position = {
@@ -139,6 +140,7 @@ const PositionController = {
             description: (requestBody.description?.length > 0) ? requestBody.description : null,
             source: requestBody.source,
             url: (requestBody.url?.length > 0) ? requestBody.url : null,
+            user: user.id,
         };
 
         return position;
