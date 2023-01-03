@@ -81,6 +81,54 @@ const PositionController = {
     }),
 
     /*
+    @desc:    Checks an incoming position request to ensure that all required fields are present and all resources exist
+    @params:  requestBody: The body of the incoming request
+    @returns: An array containing any errors found during validation
+    */
+    validate_position_request: async (requestBody="", resourceID = "", user) => {
+        // Error object for tracking type of HTTP error and error messages
+        const errorObj = {
+            statusCode: "",
+            errors: []
+        };
+
+        // Since this function can be used by the delete request to check existance and ownership of a position, we don't always need to check a request body.
+        if(requestBody !== "") {
+            // Get required fields from request body
+            const { name, source } = requestBody;
+
+            // If the required fields are not present, add an error message and set the status
+            if(!name || !name.length) errorObj.errors.push({message: "Name field is required"});
+            if(!source || !source.length) errorObj.errors.push({message: "Source field is required"});
+            if(errorObj.errors.length) {
+                errorObj.statusCode = 400;
+                // Since we set a status code, we can exit and send a response from the controller
+                return errorObj;
+            }
+        }
+
+        if(resourceID !== "") {
+            // Get position from db
+            const position = await Position.findById(resourceID);
+
+            // If the position was not found, add a message, set the status code, and return
+            if(!position) {
+                errorObj.errors.push({message: "Position with that ID was not found"});
+                errorObj.statusCode = 404;
+                return errorObj;
+            }
+
+            // If there is no user logged in, or the user does not match the owner of the position, add a message and set the status code. The return comes next.
+            if(!user || user.id !== position.user) {
+                errorObj.errors.push({message: "Not authorized to access that resource"});
+                errorObj.statusCode = 401;
+            }
+        }
+
+        return errorObj;
+    },
+
+    /*
     @desc:    
     @params:  
     @returns:  
