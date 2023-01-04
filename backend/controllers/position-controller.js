@@ -20,7 +20,7 @@ const PositionController = {
         if(errors.length) return res.status(400).json({errors: errors});
 
         // Create position in database
-        const newPosition = await PositionController.create_position(position);
+        const newPosition = await Position.create(position);
 
         // Respond with position
         res.status(200).json({position: newPosition});

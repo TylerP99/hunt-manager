@@ -156,7 +156,7 @@ const UserController = {
     */
     genAuthToken: (id) => {
         return jwt.sign({_id: id}, process.env.JWT_AUTH_SECRET, {
-            expiresIn: "15s",
+            expiresIn: "15m",
         });
     },
 
