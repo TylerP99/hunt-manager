@@ -5,9 +5,9 @@ const Position = require("../models/Position");
 const PositionController = {
 
     /*
-    @desc:   
-    @route:  
-    @access: 
+    @desc:   Creates a position within the db
+    @route:  POST /api/positions
+    @access: Private
     */
     create_position_handler: AsyncHandler( async (req, res) => {
         // Get position from request body
@@ -27,9 +27,9 @@ const PositionController = {
     }),
 
     /*
-    @desc:   
-    @route:  
-    @access: 
+    @desc:   Gets all positions created by the requesting user
+    @route:  GET /api/positions
+    @access: Private
     */
     get_position_handler: AsyncHandler( async (req, res) => {
         const positions = await Position.find({user: req.user._id});
@@ -37,9 +37,9 @@ const PositionController = {
     }),
 
     /*
-    @desc:   
-    @route:  
-    @access: 
+    @desc:   Updates a specified position document in the db
+    @route:  PUT /api/positions/:id
+    @access: Private
     */
     update_position_handler: AsyncHandler( async (req, res) => {
         // Get position from db for verification
@@ -65,9 +65,9 @@ const PositionController = {
     }),
 
     /*
-    @desc:   
-    @route:  
-    @access: 
+    @desc:   Deletes a specified position document from the db
+    @route:  DELETE /api/positions/:id
+    @access: Private
     */
     delete_position_handler: AsyncHandler( async (req, res) => {
         // Get position from db for verification
@@ -147,9 +147,9 @@ const PositionController = {
     },
 
     /*
-    @desc:    
-    @params:  
-    @returns:  
+    @desc:    Ensures a position object follows a set of defined requirements and returns any errors found
+    @params:  position: A position object
+    @returns: An array containing errors found during validation
     */
     validate_position: (position) => {
         const SHORT_TEXT_LENGTH = 50;
