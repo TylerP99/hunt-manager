@@ -6,7 +6,7 @@ const ConnectionController = {
 
     /*
     @desc:   Handles the connection creation route. Creates a connection from body and validates it. If invalid, return errors,     otherwise create connection in db and return the connection.
-    @route:  POST /api/connection
+    @route:  POST /api/connections
     @access: Private
     */
     create_connection_handler: AsyncHandler( async (req, res) => {
@@ -28,7 +28,7 @@ const ConnectionController = {
 
     /*
     @desc:   Gets all connections from database
-    @route:  GET /api/connection
+    @route:  GET /api/connections
     @access: Private
     */
     get_connections_handler: AsyncHandler( async (req, res) => {
@@ -37,9 +37,9 @@ const ConnectionController = {
     }),
 
     /*
-    @desc:   
-    @route:  
-    @access: 
+    @desc:   Updates a specified connection from within the database
+    @route:  PUT /api/connections
+    @access: Private
     */
     update_connection_handler: AsyncHandler( async (req, res) => {
         // Get connection from db for ownership check
@@ -65,9 +65,9 @@ const ConnectionController = {
     }),
 
     /*
-    @desc:   
-    @route:  
-    @access: 
+    @desc:   Deletes a specified connection from within the database
+    @route:  DELETE /api/connections
+    @access: Private
     */
     delete_connection_handler: AsyncHandler( async (req, res) => {
         // Get connection from db for ownership check
@@ -81,9 +81,10 @@ const ConnectionController = {
     }),
 
     /*
-    @desc:    
-    @params:  
-    @returns:  
+    @desc:    Creates a connection object using request information
+    @params:  requestBody: The request body data
+                     user: The information of the requesting user
+    @returns: A connection object
     */
     get_connection_from_request: (requestBody, user) => {
         const connection = {
@@ -93,16 +94,16 @@ const ConnectionController = {
             email: (requestBody.email?.length > 0) ? requestBody.email : null,
             twitter: (requestBody.twitter?.length > 0) ? requestBody.twitter : null,
             linkedin: (requestBody.linkedin?.length > 0) ? requestBody.linkedin : null,
-            user: req.user._id,
+            user: user._id,
         };
 
         return connection;
     },
 
     /*
-    @desc:    
-    @params:  
-    @returns:  
+    @desc:    Ensures that a connection object follows a set of specified requirements
+    @params:  connection: A connection object
+    @returns: An array containing any errors found during validation
     */
     validate_connection: (connection) => {
         const SHORT_TEXT_LENGTH = 50; // Length of characters for short text fields
