@@ -86,10 +86,10 @@ const CompanyController = {
         if(company.user != req.user._id) return res.status(401).json([{msg: "Not authorized to access this resource"}]);
 
         // Get connection from request
-        const connection = ConnectionHandler.get_connection_from_request(req.body, req.user);
+        const connection = ConnectionController.get_connection_from_request(req.body, req.user);
 
         // Validate connection
-        const errors = ConnectionHandler.validate_connection(connection);
+        const errors = ConnectionController.validate_connection(connection);
 
         // Return if errors
         if(errors.length) return res.status(400).json(errors);
@@ -117,10 +117,10 @@ const CompanyController = {
         if(company.user != req.user._id) return res.status(401).json([{msg: "Not authorized to access this resource"}]);
 
         // Get position from request
-        const position = PositionHandler.get_position_from_request(req.body, req.user);
+        const position = PositionController.get_position_from_request(req.body, req.user);
 
         // Validate position
-        const errors = PositionHandler.validate_position(position);
+        const errors = PositionController.validate_position(position);
 
         // Return if errors
         if(errors.length) return res.status(400).json(errors);
