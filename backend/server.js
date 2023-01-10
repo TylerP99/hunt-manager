@@ -5,6 +5,9 @@ const path = require("path");
 
 const port = process.env.PORT || 3000;
 
+const logger = require("morgan");
+app.use(logger("dev"));
+
 // Custom error handler
 const {errorHandler} = require("./middleware/errorHandler");
 

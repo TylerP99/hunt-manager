@@ -1,6 +1,6 @@
 function Landing() {
   return (
-    <div>Dashboard</div>
+    <div>Landing</div>
   )
 }
 

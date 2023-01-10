@@ -11,7 +11,7 @@ function Company({companyID}) {
         </ul>
         <ul>
             <li>Initial contact</li>
-            <li>Follouw up</li>
+            <li>Follow up</li>
             <li>Interview</li>
         </ul>
         <ul>
