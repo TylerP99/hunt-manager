@@ -43,4 +43,5 @@ app.all('*', (req, res) => {
 // Use error handler
 app.use(errorHandler);
 
+// Run app on port
 app.listen(port, () => console.log(`Hunt Manager running on port ${port}`));
