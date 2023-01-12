@@ -29,6 +29,7 @@ app.use('/', express.static(path.join(__dirname, 'public')))
 // Router
 app.use("/", require("./routes/index.js"));
 
+// Catch any undefined routes
 app.all('*', (req, res) => {
     res.status(404)
     if (req.accepts('html')) {
