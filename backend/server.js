@@ -21,6 +21,7 @@ app.use(cors({credentials: true, origin: "http://localhost:5000"}));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
+// Cookie parser
 const cookieParser = require("cookie-parser");
 app.use(cookieParser());
 
