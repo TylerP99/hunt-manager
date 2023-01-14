@@ -5,6 +5,7 @@ const path = require("path");
 
 const port = process.env.PORT || 3000;
 
+// Logger
 const logger = require("morgan");
 app.use(logger("dev"));
 
@@ -14,6 +15,7 @@ const {errorHandler} = require("./middleware/errorHandler");
 // Connect to MongoDB via Mongoose
 (require("./config/db"))();
 
+// CORS
 const cors = require("cors");
 app.use(cors({credentials: true, origin: "http://localhost:5000"}));
 
