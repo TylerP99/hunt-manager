@@ -3,7 +3,7 @@ import React from 'react'
 function Footer() {
   return (
     <footer
-    className="w-full bg-slate-200"
+    className="w-full mt-10 bg-slate-200"
     >
         Footer
     </footer>
