@@ -5,7 +5,7 @@ function Dashboard({companies}) {
   const taskCardStyle = "border-4 rounded-md px-4 py-2 mb-2";
 
   return (
-    <section className="max-w-7xl mx-auto border-8">
+    <section className="max-w-7xl mx-auto">
       
       <h1 className="text-3xl ml-10 mb-6 flex items-center">
         <MdWavingHand className="mr-4" />
