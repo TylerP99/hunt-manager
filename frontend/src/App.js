@@ -8,6 +8,7 @@ import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 
 import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 function App() {
 
@@ -192,7 +193,7 @@ function App() {
   return (
     <>
       <Router>
-        <div>
+        <div className="min-h-screen flex flex-col justify-evenly">
           <Header />
           <Routes>
             <Route path="/" element={<Landing/>} />
@@ -200,6 +201,7 @@ function App() {
             <Route path="/login" element={<Login/>} /> 
             <Route path="/dashboard" element={<Dashboard companies = {companies} />} />
           </Routes>
+          <Footer />
         </div>
       </Router>
       <ToastContainer/>

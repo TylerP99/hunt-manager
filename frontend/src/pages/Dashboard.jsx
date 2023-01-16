@@ -5,7 +5,7 @@ function Dashboard({companies}) {
   const taskCardStyle = "border-4 rounded-md px-4 py-2 mb-2";
 
   return (
-    <section className="max-w-7xl mx-auto">
+    <section className="max-w-7xl mx-auto border-8">
       
       <h1 className="text-3xl ml-10 mb-6 flex items-center">
         <MdWavingHand className="mr-4" />
@@ -59,7 +59,7 @@ function Dashboard({companies}) {
           <h2
           className="text-xl mb-2 border-b-2 w-[90%] mx-auto"
           >Companies</h2>
-          <section className="h-[500px] w-full overflow-scroll flex flex-col px-5">
+          <section className="w-full h-[90%] overflow-scroll flex flex-col px-5">
             {companies.map(x => <CompanyShort company={x} key={x._id} />)}
           </section>
         </section>
