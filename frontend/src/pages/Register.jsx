@@ -9,9 +9,9 @@ import {register, reset} from "../features/auth/authSlice";
 function Register() {
 
   const inputStyles = "py-2 px-3 border focus:border-lightBlue border-2";
-  const labelStyles = "underline mb-1";
+  const labelStyles = "mb-1";
   const formGroupStyles = "flex flex-col mb-5";
-  const buttonStyles = "text-white bg-auto bg-lightBlue px-5 py-2 border rounded-lg hover:underline hover:bg-lighterBlue";
+  const buttonStyles = "block w-2/3 mx-auto text-white bg-auto bg-lightBlue px-5 py-2 border rounded-lg hover:underline hover:bg-lighterBlue";
 
   // Form state
   const [formData, setFormData] = useState({
@@ -76,15 +76,17 @@ function Register() {
 
   return (
     <section className="text-xl max-w-7xl mx-auto">
-      <h1 className="text-4xl w-fit font-bold mx-auto mb-5">
-        Register
-      </h1>
-      <form className="max-w-4xl mx-auto p-10 border-4 border-blue rounded-xl" onSubmit={onSubmit}>
+      <form className="max-w-4xl mx-auto p-10 pt-7 border-4 border-blue rounded-xl" onSubmit={onSubmit}>
+
+        <h1 className="text-4xl border-b-2 border-blue text-center w-3/4 font-bold mx-auto mb-5">
+          Register
+        </h1>
+
         <section className={formGroupStyles}>
           <label 
           className={labelStyles}
           htmlFor="username">
-            Username:
+            Username
           </label>
           <input
             className={inputStyles}
@@ -101,7 +103,7 @@ function Register() {
           <label 
           className={labelStyles}
           htmlFor="email">
-            Email:
+            Email
           </label>
           <input
             className={inputStyles}
@@ -118,7 +120,7 @@ function Register() {
           <label 
           className={labelStyles}
           htmlFor="password">
-            Password:
+            Password
           </label>
           <input
             className={inputStyles}
@@ -135,7 +137,7 @@ function Register() {
           <label 
           className={labelStyles}
           htmlFor="password2">
-            Confirm Password:
+            Confirm Password
           </label>
           <input
             className={inputStyles}
