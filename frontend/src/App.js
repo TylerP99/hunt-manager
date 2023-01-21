@@ -193,7 +193,7 @@ function App() {
   return (
     <>
       <Router>
-        <div className="min-h-screen">
+        <div className="min-h-screen flex flex-col justify-between">
           <Header />
           <Routes>
             <Route path="/" element={<Landing/>} />
