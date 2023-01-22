@@ -24,7 +24,7 @@ function App() {
           name: "Software Engineer",
           description: "MERN stack backend focused developer",
           source: "indeed",
-          url: "linkedin.com/youtubejobfakelink",
+          url: "https://linkedin.com/youtubejobfakelink",
         },
       ],
       connections: [
@@ -49,7 +49,7 @@ function App() {
           name: "Software Engineer",
           description: "MERN stack backend focused developer",
           source: "indeed",
-          url: "linkedin.com/youtubejobfakelink",
+          url: "https://linkedin.com/youtubejobfakelink",
         },
       ],
       connections: [
@@ -74,7 +74,7 @@ function App() {
           name: "Software Engineer",
           description: "MERN stack backend focused developer",
           source: "indeed",
-          url: "linkedin.com/youtubejobfakelink",
+          url: "https://linkedin.com/youtubejobfakelink",
         },
       ],
       connections: [
@@ -99,7 +99,7 @@ function App() {
           name: "Software Engineer",
           description: "MERN stack backend focused developer",
           source: "indeed",
-          url: "linkedin.com/youtubejobfakelink",
+          url: "https://linkedin.com/youtubejobfakelink",
         },
       ],
       connections: [
@@ -124,7 +124,7 @@ function App() {
           name: "Software Engineer",
           description: "MERN stack backend focused developer",
           source: "indeed",
-          url: "linkedin.com/youtubejobfakelink",
+          url: "https://linkedin.com/youtubejobfakelink",
         },
       ],
       connections: [
@@ -149,7 +149,7 @@ function App() {
           name: "Software Engineer",
           description: "MERN stack backend focused developer",
           source: "indeed",
-          url: "linkedin.com/youtubejobfakelink",
+          url: "https://linkedin.com/youtubejobfakelink",
         },
       ],
       connections: [
@@ -174,7 +174,7 @@ function App() {
           name: "Software Engineer",
           description: "MERN stack backend focused developer",
           source: "indeed",
-          url: "linkedin.com/youtubejobfakelink",
+          url: "https://linkedin.com/youtubejobfakelink",
         },
       ],
       connections: [

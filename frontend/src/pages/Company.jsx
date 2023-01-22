@@ -3,6 +3,7 @@ import React from 'react'
 import { useParams } from "react-router-dom";
 
 import Connection from '../components/Connection';
+import Position from '../components/Position';
 
 
 function Company({companies}) {
@@ -17,6 +18,11 @@ function Company({companies}) {
         <h1>{company.name}</h1>
         <section>
           <h2>Positions</h2>
+          <div>
+            {
+              company.positions.map(x => <Position id={x.name} position={x} />)
+            }
+          </div>
         </section>
         <section>
           <h2>Connections</h2>
