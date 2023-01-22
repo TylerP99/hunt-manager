@@ -2,6 +2,8 @@ import React from 'react'
 
 import { useParams } from "react-router-dom";
 
+import Connection from '../components/Connection';
+
 
 function Company({companies}) {
 
@@ -13,18 +15,17 @@ function Company({companies}) {
   return (
     <section>
         <h1>{company.name}</h1>
-        <ul>
-            <li><a>Position Links</a></li>
-            <li><a>Position Links</a></li>
-        </ul>
-        <ul>
-            <li>Initial contact</li>
-            <li>Follow up</li>
-            <li>Interview</li>
-        </ul>
-        <ul>
-            <li>Melissa A. (Hiring Manager)</li>
-        </ul>
+        <section>
+          <h2>Positions</h2>
+        </section>
+        <section>
+          <h2>Connections</h2>
+          <div>
+            {
+              company.connections.map(x => <Connection id={x.name} connection={x} />)
+            }
+          </div>
+        </section>
         <p>Descriptive info</p>
     </section>
   )
