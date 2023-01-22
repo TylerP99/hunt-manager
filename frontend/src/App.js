@@ -6,6 +6,7 @@ import Landing from "./pages/Landing";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
+import Company from "./pages/Company";
 
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -64,7 +65,7 @@ function App() {
       ]
     },
     {
-      _id: 1,
+      _id: 2,
       name: "Youtube",
       description: "Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description",
       websiteURL: "www.youtube.com",
@@ -89,7 +90,7 @@ function App() {
       ]
     },
     {
-      _id: 1,
+      _id: 3,
       name: "Youtube",
       description: "Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description",
       websiteURL: "www.youtube.com",
@@ -114,7 +115,7 @@ function App() {
       ]
     },
     {
-      _id: 1,
+      _id: 4,
       name: "Youtube",
       description: "Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description",
       websiteURL: "www.youtube.com",
@@ -139,7 +140,7 @@ function App() {
       ]
     },
     {
-      _id: 1,
+      _id: 5,
       name: "Youtube",
       description: "Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description",
       websiteURL: "www.youtube.com",
@@ -164,7 +165,7 @@ function App() {
       ]
     },
     {
-      _id: 1,
+      _id: 6,
       name: "Youtube",
       description: "Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description",
       websiteURL: "www.youtube.com",
@@ -200,6 +201,7 @@ function App() {
             <Route path="/register" element={<Register/>} />
             <Route path="/login" element={<Login/>} /> 
             <Route path="/dashboard" element={<Dashboard companies = {companies} />} />
+            <Route path="/companies/:id" element={<Company companies = {companies} />} />
           </Routes>
           <Footer />
         </div>

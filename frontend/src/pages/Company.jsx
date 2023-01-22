@@ -1,10 +1,18 @@
 import React from 'react'
 
+import { useParams } from "react-router-dom";
 
-function Company({companyID}) {
+
+function Company({companies}) {
+
+  const params = useParams();
+
+  const company = companies.reduce((obj, x) => (x._id == params.id) ? obj = x : obj = obj , {});
+
+
   return (
     <section>
-        <h1>Company Name</h1>
+        <h1>{company.name}</h1>
         <ul>
             <li><a>Position Links</a></li>
             <li><a>Position Links</a></li>
