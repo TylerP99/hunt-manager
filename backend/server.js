@@ -21,7 +21,7 @@ const {errorHandler} = require("./middleware/errorHandler");
 
 // CORS
 const cors = require("cors");
-app.use(cors({credentials: true, origin: "http://localhost:5000"}));
+app.use(cors());
 
 // Body middleware
 app.use(express.json());
