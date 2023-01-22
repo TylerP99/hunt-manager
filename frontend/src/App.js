@@ -196,13 +196,17 @@ function App() {
       <Router>
         <div className="min-h-screen flex flex-col">
           <Header />
-          <Routes>
-            <Route path="/" element={<Landing/>} />
-            <Route path="/register" element={<Register/>} />
-            <Route path="/login" element={<Login/>} /> 
-            <Route path="/dashboard" element={<Dashboard companies = {companies} />} />
-            <Route path="/companies/:id" element={<Company companies = {companies} />} />
-          </Routes>
+          <main 
+            className="max-w-7xl mx-auto w-[95%]"
+          >
+            <Routes>
+              <Route path="/" element={<Landing/>} />
+              <Route path="/register" element={<Register/>} />
+              <Route path="/login" element={<Login/>} /> 
+              <Route path="/dashboard" element={<Dashboard companies = {companies} />} />
+              <Route path="/companies/:id" element={<Company companies = {companies} />} />
+            </Routes>
+          </main>
           <Footer />
         </div>
       </Router>
