@@ -1,16 +1,61 @@
 import {MdWavingHand} from "react-icons/md";
 import {Link} from "react-router-dom";
 
+import TaskCard from "../components/TaskCard";
+
 function Dashboard({companies}) {
 
   const taskCardStyle = "border-4 rounded-md px-4 py-2 mb-2";
+
+  const tasks = [
+    {
+      name: "Send message to Fred",
+      dateTime: "Jan 10, 2023 - 1:00PM"
+    },
+    {
+      name: "Send message to Fred",
+      dateTime: "Jan 10, 2023 - 1:00PM"
+    },
+    {
+      name: "Send message to Fred",
+      dateTime: "Jan 10, 2023 - 1:00PM"
+    },
+    {
+      name: "Send message to Fred",
+      dateTime: "Jan 10, 2023 - 1:00PM"
+    },
+    {
+      name: "Send message to Fred",
+      dateTime: "Jan 10, 2023 - 1:00PM"
+    },
+    {
+      name: "Send message to Fred",
+      dateTime: "Jan 10, 2023 - 1:00PM"
+    },
+    {
+      name: "Send message to Fred",
+      dateTime: "Jan 10, 2023 - 1:00PM"
+    },
+    {
+      name: "Send message to Fred",
+      dateTime: "Jan 10, 2023 - 1:00PM"
+    },
+    {
+      name: "Send message to Fred",
+      dateTime: "Jan 10, 2023 - 1:00PM"
+    },
+    {
+      name: "Send message to Fred",
+      dateTime: "Jan 10, 2023 - 1:00PM"
+    }
+  ];
 
   return (
     <section className="">
       
       <h1 className="text-3xl ml-10 mb-6 flex items-center">
-        <MdWavingHand className="mr-4" />
-        Hello, <span className="font-bold ml-2">Tyler!</span>
+        <MdWavingHand className="mr-4 text-blue" />
+        Hello, <span className="font-bold ml-1.5 text-orange">Tyler</span>!
       </h1>
 
       <section className="w-[95%] flex flex-col mx-auto">
@@ -18,39 +63,10 @@ function Dashboard({companies}) {
         className="w-full h-[300px] mb-10 py-2"
         >
           <h2
-          className="text-xl mb-2 border-b-2 w-[90%] mx-auto"
+          className="text-xl mb-2 border-b-2 mx-auto"
           >Upcoming tasks</h2>
-          <section className="overflow-scroll h-[90%] px-5">
-            <section
-            className={taskCardStyle}
-            >
-              <h2>Send message to Fred</h2>
-              <p>Jan 10, 2023 - 1:00PM</p>
-            </section>
-            <section
-            className={taskCardStyle}
-            >
-              <h2>Send message to Fred</h2>
-              <p>Jan 10, 2023 - 1:00PM</p>
-            </section>
-            <section
-            className={taskCardStyle}
-            >
-              <h2>Send message to Fred</h2>
-              <p>Jan 10, 2023 - 1:00PM</p>
-            </section>
-            <section
-            className={taskCardStyle}
-            >
-              <h2>Send message to Fred</h2>
-              <p>Jan 10, 2023 - 1:00PM</p>
-            </section>
-            <section
-            className={taskCardStyle}
-            >
-              <h2>Send message to Fred</h2>
-              <p>Jan 10, 2023 - 1:00PM</p>
-            </section>
+          <section className="overflow-scroll h-[90%] px-2">
+            {tasks.map((x,i) => <TaskCard task={x} id={i} />)}
           </section>
         </section>
 
@@ -58,9 +74,9 @@ function Dashboard({companies}) {
         className="w-full h-[300px] mb-10 py-2"
         >
           <h2
-          className="text-xl mb-2 border-b-2 w-[90%] mx-auto"
+          className="text-xl mb-2 border-b-2 mx-auto"
           >Companies</h2>
-          <section className="w-full h-[90%] overflow-scroll flex flex-col px-5">
+          <section className="w-full h-[90%] overflow-scroll flex flex-col px-2">
             {companies.map(x => <CompanyShort company={x} key={x._id} />)}
           </section>
         </section>
