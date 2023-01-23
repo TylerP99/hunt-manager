@@ -8,6 +8,7 @@ import { FaCog, FaPlus, FaLessThan } from "react-icons/fa";
 import Connection from '../components/Connection';
 import Position from '../components/Position';
 import OptionButton from '../components/OptionButton';
+import SettingsMenu from '../components/SettingsMenu';
 
 
 function Company({companies}) {
@@ -38,7 +39,7 @@ function Company({companies}) {
             <h1
               className='text-3xl text-blue'
             >{company.name}</h1>
-            <OptionButton Icon={FaCog} />
+            <OptionButton Icon={FaCog} OptionContent={SettingsMenu} />
           </section>
           <p>A large scale video sharing company, owned by Google</p>
         </section>

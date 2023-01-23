@@ -13,7 +13,7 @@ function OptionButton({Icon, OptionContent, iconStyles}) {
   return (
     <div>
         <Icon className={"cursor-pointer" + " " + iconStyles} onClick={toggleOverlay} />
-        <Overlay toggleOverlay={toggleOverlay} open={overlayOpen} />
+        <Overlay toggleOverlay={toggleOverlay} open={overlayOpen} Content={OptionContent} />
     </div>
   )
 }
