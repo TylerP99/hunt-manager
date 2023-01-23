@@ -2,8 +2,12 @@ import React from 'react'
 
 import { useParams } from "react-router-dom";
 
+import {Link} from "react-router-dom";
+import { FaCog, FaPlus, FaLessThan } from "react-icons/fa";
+
 import Connection from '../components/Connection';
 import Position from '../components/Position';
+import OptionButton from '../components/OptionButton';
 
 
 function Company({companies}) {
@@ -14,23 +18,43 @@ function Company({companies}) {
 
 
   return (
+
     <section
       className="w-[95%] mx-auto"
     >
+        <Link
+          className="flex items-center text-sm -mt-4 mb-4 hover:text-blue"
+          to="/dashboard"
+        >
+          <span>&lt; Back to Dashboard</span>
+        </Link>
+
         <section
           className="mb-6"
         >
-          <h1
-            className="text-3xl text-blue border-b-2 border-blue mb-2"
-          >{company.name}</h1>
+          <section
+            className="flex justify-between items-center border-b-2 border-blue mb-2"
+          >
+            <h1
+              className='text-3xl text-blue'
+            >{company.name}</h1>
+            <OptionButton Icon={FaCog} />
+          </section>
           <p>A large scale video sharing company, owned by Google</p>
         </section>
         <section
           className="mb-6"
         >
-          <h2
-            className="text-2xl mb-2 border-b border-blue"
-          >Positions</h2>
+          <section
+            className="flex justify-between items-center mb-2 border-b border-black"
+          >
+            <h2
+              className="text-2xl"
+            >Positions</h2>
+            <FaPlus
+              className='cursor-pointer'
+            />
+          </section>
           <div 
             className="max-h-[600px] overflow-y-scroll"
           >
@@ -42,7 +66,16 @@ function Company({companies}) {
         <section
           className="mb-6"
         >
-          <h2>Connections</h2>
+          <section
+            className="flex justify-between items-center mb-2 border-b border-black"
+          >
+            <h2
+              className="text-2xl"
+            >Connections</h2>
+            <FaPlus
+              className='cursor-pointer'
+            />
+          </section>
           <div>
             {
               company.connections.map(x => <Connection id={x.name} connection={x} />)
