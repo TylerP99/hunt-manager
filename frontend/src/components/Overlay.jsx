@@ -2,13 +2,11 @@ import {useState} from 'react'
 
 import {FaTimes} from "react-icons/fa";
 
-function Overlay({Content = () => <p>No content to display</p>}) {
-
-  const [open, setOpen] = useState(!false);
-
-  const toggleOverlay = (event) => {
-      if(!event.target.closest("#content-container")) setOpen(!open);
-  }
+function Overlay({
+  Content = () => <p>No content to display</p>,
+  open,
+  toggleOverlay
+}) {
 
   return (
     <div
