@@ -1,7 +1,10 @@
 import {MdWavingHand} from "react-icons/md";
+import {FaPlus} from "react-icons/fa";
 import {Link} from "react-router-dom";
 
 import TaskCard from "../components/TaskCard";
+import OptionButton from "../components/OptionButton";
+import CreateCompanyForm from "../components/forms/CreateCompanyForm";
 
 function Dashboard({companies}) {
 
@@ -66,18 +69,37 @@ function Dashboard({companies}) {
           className="text-xl mb-2 border-b-2 mx-auto"
           >Upcoming tasks</h2>
           <section className="overflow-scroll h-[90%] px-2">
-            {tasks.map((x,i) => <TaskCard task={x} id={i} />)}
+            {
+            (tasks.length) ? 
+            tasks.map((x,i) => <TaskCard task={x} id={i} />)
+            :
+            <p
+              className="mx-auto text-gray-500 text-xl"
+            >No upcoming tasks</p>
+            }
           </section>
         </section>
 
         <section
         className="w-full h-[300px] mb-10 py-2"
         >
-          <h2
-          className="text-xl mb-2 border-b-2 mx-auto"
-          >Companies</h2>
+          <section
+            className="mb-2 border-b-2 mx-auto flex justify-between items-center"
+          >
+            <h2
+              className="text-xl"
+            >Companies</h2>
+            <OptionButton Icon={FaPlus} OptionContent={CreateCompanyForm} />
+          </section>
           <section className="w-full h-[90%] overflow-scroll flex flex-col px-2">
-            {companies.map(x => <CompanyShort company={x} key={x._id} />)}
+            {
+            (companies.length) ? 
+            companies.map(x => <CompanyShort company={x} key={x._id} />)
+            :
+            <p
+              className="mx-auto text-gray-500 text-xl"
+            >No companies</p>
+            }
           </section>
         </section>
 
