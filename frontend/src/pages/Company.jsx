@@ -9,6 +9,7 @@ import Connection from '../components/Connection';
 import Position from '../components/Position';
 import OptionButton from '../components/OptionButton';
 import SettingsMenu from '../components/SettingsMenu';
+import CreatePositionForm from '../components/forms/CreatePositionForm';
 
 
 function Company({companies}) {
@@ -52,9 +53,7 @@ function Company({companies}) {
             <h2
               className="text-2xl"
             >Positions</h2>
-            <FaPlus
-              className='cursor-pointer'
-            />
+            <OptionButton Icon={FaPlus} OptionContent={CreatePositionForm} />
           </section>
           <div 
             className="max-h-[600px] overflow-y-scroll"

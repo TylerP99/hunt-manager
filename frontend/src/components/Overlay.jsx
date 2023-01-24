@@ -14,7 +14,7 @@ function Overlay({
       className={"absolute top-0 left-0 z-50 h-screen w-screen bg-slate-100/90" + " " + (open ? "" : "hidden") }
     >
         <div
-          className='min-w-1/2 max-w-[90%] mx-auto mt-20'
+          className='min-w-1/2 max-w-[800px] w-auto mx-auto mt-20'
         >
             <div 
             id='close-btn'

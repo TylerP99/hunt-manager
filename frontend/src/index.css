@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+:-moz-focusring {
+    outline: 2px solid #F98125;
+  }
+
 .hamburger {
     cursor: pointer;
     width: 24px;
