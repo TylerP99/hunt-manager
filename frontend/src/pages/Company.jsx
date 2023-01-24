@@ -10,6 +10,7 @@ import Position from '../components/Position';
 import OptionButton from '../components/OptionButton';
 import SettingsMenu from '../components/SettingsMenu';
 import CreatePositionForm from '../components/forms/CreatePositionForm';
+import CreateConnectionForm from '../components/forms/CreateConnectionForm';
 
 
 function Company({companies}) {
@@ -72,9 +73,7 @@ function Company({companies}) {
             <h2
               className="text-2xl"
             >Connections</h2>
-            <FaPlus
-              className='cursor-pointer'
-            />
+            <OptionButton Icon={FaPlus} OptionContent={CreateConnectionForm} />
           </section>
           <div>
             {
