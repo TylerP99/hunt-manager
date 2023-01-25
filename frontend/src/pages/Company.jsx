@@ -60,7 +60,12 @@ function Company({companies}) {
             className="max-h-[600px] overflow-y-scroll"
           >
             {
+              (company.positions.length) ?
               company.positions.map(x => <Position id={x.name} position={x} />)
+              :
+              <p
+              className="w-fit mx-auto text-gray-500 text-xl"
+            >No companies</p>
             }
           </div>
         </section>
@@ -77,7 +82,12 @@ function Company({companies}) {
           </section>
           <div>
             {
+              (company.connections.length) ?
               company.connections.map(x => <Connection id={x.name} connection={x} />)
+              :
+              <p
+              className="w-fit mx-auto text-gray-500 text-xl"
+            >No companies</p>
             }
           </div>
         </section>
