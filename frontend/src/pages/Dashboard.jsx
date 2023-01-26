@@ -6,6 +6,7 @@ import TaskCard from "../components/TaskCard";
 import OptionButton from "../components/OptionButton";
 import CreateCompanyForm from "../components/forms/CreateCompanyForm";
 import OptionHeader from "../components/OptionHeader";
+import CompanyList from "../components/lists/CompanyList";
 
 function Dashboard({companies}) {
 
@@ -79,24 +80,7 @@ function Dashboard({companies}) {
           </section>
         </section>
 
-        <section
-        className="w-full h-[300px] mb-10 py-2"
-        >
-          <OptionHeader 
-            text="Companies" 
-            options={[<OptionButton key="add-company" Icon={FaPlus} OptionContent={CreateCompanyForm} />]}
-          />
-          <section className="w-full h-[90%] overflow-scroll flex flex-col px-2">
-            {
-            (companies.length) ? 
-            companies.map(x => <CompanyShort company={x} key={x._id} />)
-            :
-            <p
-              className="mx-auto text-gray-500 text-xl"
-            >No companies</p>
-            }
-          </section>
-        </section>
+        <CompanyList companies={companies} />
 
       </section>
 
