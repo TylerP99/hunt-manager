@@ -1,4 +1,4 @@
-import OptionHeader from '../OptionHeader';
+import OptionHeader from './OptionHeader';
 
 function List({elements, Card, options, headerText, emptyText}) {
     console.log(elements, Card, options, headerText, emptyText);

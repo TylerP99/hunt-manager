@@ -5,14 +5,14 @@ import { useParams } from "react-router-dom";
 import {Link} from "react-router-dom";
 import { FaCog, FaPlus, FaLessThan } from "react-icons/fa";
 
-import Connection from '../components/Connection';
-import Position from '../components/Position';
+import Connection from '../components/cards/ConnectionCard';
+import Position from '../components/cards/PositionCard';
 import OptionButton from '../components/OptionButton';
 import SettingsMenu from '../components/SettingsMenu';
 import CreatePositionForm from '../components/forms/CreatePositionForm';
 import CreateConnectionForm from '../components/forms/CreateConnectionForm';
 import OptionHeader from '../components/OptionHeader';
-import List from "../components/lists/List";
+import List from "../components/List";
  
 
 function Company({companies}) {

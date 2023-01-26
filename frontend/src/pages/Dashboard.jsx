@@ -1,7 +1,7 @@
 import {MdWavingHand} from "react-icons/md";
 import {FaPlus} from "react-icons/fa";
 
-import List from "../components/lists/List";
+import List from "../components/List";
 import OptionButton from "../components/OptionButton";
 import CompanyCard from "../components/cards/CompanyCard";
 import CreateCompanyForm from "../components/forms/CreateCompanyForm";
