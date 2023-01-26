@@ -3,7 +3,9 @@ import React from 'react'
 
 import {Link} from "react-router-dom";
 
-function Company({company}) {
+function CompanyCard({elem}) {
+  const company = elem;
+  console.log("Company", company)
   const {name, description} = company;
   let positionCount = company.positions.length-1;
 
@@ -27,4 +29,4 @@ function Company({company}) {
   )
 }
 
-export default Company
+export default CompanyCard

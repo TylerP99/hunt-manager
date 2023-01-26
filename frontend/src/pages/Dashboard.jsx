@@ -1,7 +1,12 @@
 import {MdWavingHand} from "react-icons/md";
+import {FaPlus} from "react-icons/fa";
 
 import CompanyList from "../components/lists/CompanyList";
 import TaskList from "../components/lists/TaskList";
+import List from "../components/lists/List";
+import OptionButton from "../components/OptionButton";
+import CompanyCard from "../components/cards/CompanyCard";
+import CreateCompanyForm from "../components/forms/CreateCompanyForm";
 
 function Dashboard({companies}) {
 
@@ -60,6 +65,14 @@ function Dashboard({companies}) {
         <TaskList tasks={tasks} />
 
         <CompanyList companies={companies} />
+
+        <List
+        elements={companies}
+        Card={CompanyCard}
+        options={[<OptionButton key="add-company" Icon={FaPlus} OptionContent={CreateCompanyForm} />]}
+        headerText="Companies"
+        emptyText="No companies"
+        />
 
       </section>
 

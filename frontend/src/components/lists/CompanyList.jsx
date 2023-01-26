@@ -18,10 +18,10 @@ function CompanyList({companies}) {
             options={[<OptionButton key="add-company" Icon={FaPlus} OptionContent={CreateCompanyForm} />]}
         />
         <section
-          className="w-full h-[90%] overflow-scroll flex flex-col px-2"
+          className="w-full h-[90%] overflow-scroll px-2"
         >
             {(companies.length) ?
-            companies.map(x => <CompanyCard company={x} key={x._id} />)
+            companies.map(x => <CompanyCard elem={x} key={x._id} />)
             :
             <p
               className="mx-auto text-gray-500 text-xl"
