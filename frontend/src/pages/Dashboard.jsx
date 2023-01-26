@@ -1,8 +1,6 @@
 import {MdWavingHand} from "react-icons/md";
 import {FaPlus} from "react-icons/fa";
 
-import CompanyList from "../components/lists/CompanyList";
-import TaskList from "../components/lists/TaskList";
 import List from "../components/lists/List";
 import OptionButton from "../components/OptionButton";
 import CompanyCard from "../components/cards/CompanyCard";
