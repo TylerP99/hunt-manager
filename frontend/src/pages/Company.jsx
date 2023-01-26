@@ -11,6 +11,7 @@ import OptionButton from '../components/OptionButton';
 import SettingsMenu from '../components/SettingsMenu';
 import CreatePositionForm from '../components/forms/CreatePositionForm';
 import CreateConnectionForm from '../components/forms/CreateConnectionForm';
+import OptionHeader from '../components/OptionHeader';
 
 
 function Company({companies}) {
@@ -48,14 +49,10 @@ function Company({companies}) {
         <section
           className="mb-6"
         >
-          <section
-            className="flex justify-between items-center mb-2 border-b border-black"
-          >
-            <h2
-              className="text-2xl"
-            >Positions</h2>
-            <OptionButton Icon={FaPlus} OptionContent={CreatePositionForm} />
-          </section>
+          <OptionHeader 
+            text="Positions"
+            options={[<OptionButton key="create-position" Icon={FaPlus} OptionContent={CreatePositionForm} />]}
+          />
           <div 
             className="max-h-[600px] overflow-y-scroll"
           >
@@ -72,14 +69,10 @@ function Company({companies}) {
         <section
           className="mb-6"
         >
-          <section
-            className="flex justify-between items-center mb-2 border-b border-black"
-          >
-            <h2
-              className="text-2xl"
-            >Connections</h2>
-            <OptionButton Icon={FaPlus} OptionContent={CreateConnectionForm} />
-          </section>
+          <OptionHeader 
+            text="Connections"
+            options={[<OptionButton key="create-connection" Icon={FaPlus} OptionContent={CreateConnectionForm} />]}
+          />
           <div>
             {
               (company.connections.length) ?
