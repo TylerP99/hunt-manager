@@ -7,47 +7,58 @@ import List from "../components/lists/List";
 import OptionButton from "../components/OptionButton";
 import CompanyCard from "../components/cards/CompanyCard";
 import CreateCompanyForm from "../components/forms/CreateCompanyForm";
+import TaskCard from "../components/cards/TaskCard";
 
 function Dashboard({companies}) {
 
   const tasks = [
     {
+      _id: 1,
       name: "Send message to Fred",
       dateTime: "Jan 10, 2023 - 1:00PM"
     },
     {
+      _id: 2,
       name: "Send message to Fred",
       dateTime: "Jan 10, 2023 - 1:00PM"
     },
     {
+      _id: 3,
       name: "Send message to Fred",
       dateTime: "Jan 10, 2023 - 1:00PM"
     },
     {
+      _id: 4,
       name: "Send message to Fred",
       dateTime: "Jan 10, 2023 - 1:00PM"
     },
     {
+      _id: 5,
       name: "Send message to Fred",
       dateTime: "Jan 10, 2023 - 1:00PM"
     },
     {
+      _id: 6,
       name: "Send message to Fred",
       dateTime: "Jan 10, 2023 - 1:00PM"
     },
     {
+      _id: 7,
       name: "Send message to Fred",
       dateTime: "Jan 10, 2023 - 1:00PM"
     },
     {
+      _id: 8,
       name: "Send message to Fred",
       dateTime: "Jan 10, 2023 - 1:00PM"
     },
     {
+      _id: 9,
       name: "Send message to Fred",
       dateTime: "Jan 10, 2023 - 1:00PM"
     },
     {
+      _id: 10,
       name: "Send message to Fred",
       dateTime: "Jan 10, 2023 - 1:00PM"
     }
@@ -62,9 +73,12 @@ function Dashboard({companies}) {
       </h1>
 
       <section className="w-[95%] flex flex-col mx-auto">
-        <TaskList tasks={tasks} />
-
-        <CompanyList companies={companies} />
+        <List
+        elements={tasks}
+        Card={TaskCard}
+        headerText="Upcoming Tasks"
+        emptyText="No upcoming tasks"
+        />
 
         <List
         elements={companies}

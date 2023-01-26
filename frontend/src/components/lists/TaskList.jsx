@@ -12,7 +12,7 @@ function TaskList({tasks}) {
         <section className="overflow-scroll h-[90%] px-2">
           {
           (tasks.length) ? 
-          tasks.map((x,i) => <TaskCard task={x} key={i} />)
+          tasks.map((x,i) => <TaskCard elem={x} key={i} />)
           :
           <p
             className="mx-auto text-gray-500 text-xl"

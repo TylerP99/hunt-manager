@@ -1,7 +1,7 @@
 import React from 'react'
 
-function TaskCard({task}) {
-
+function TaskCard({elem}) {
+  const task = elem;
   const {name, dateTime} = task;
 
   return (
