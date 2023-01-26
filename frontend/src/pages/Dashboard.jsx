@@ -5,6 +5,7 @@ import {Link} from "react-router-dom";
 import TaskCard from "../components/TaskCard";
 import OptionButton from "../components/OptionButton";
 import CreateCompanyForm from "../components/forms/CreateCompanyForm";
+import OptionHeader from "../components/OptionHeader";
 
 function Dashboard({companies}) {
 
@@ -65,9 +66,7 @@ function Dashboard({companies}) {
         <section
         className="w-full h-[300px] mb-10 py-2"
         >
-          <h2
-          className="text-xl mb-2 border-b-2 mx-auto"
-          >Upcoming tasks</h2>
+          <OptionHeader text="Upcoming Tasks"/>
           <section className="overflow-scroll h-[90%] px-2">
             {
             (tasks.length) ? 
@@ -83,14 +82,10 @@ function Dashboard({companies}) {
         <section
         className="w-full h-[300px] mb-10 py-2"
         >
-          <section
-            className="mb-2 border-b-2 mx-auto flex justify-between items-center"
-          >
-            <h2
-              className="text-xl"
-            >Companies</h2>
-            <OptionButton Icon={FaPlus} OptionContent={CreateCompanyForm} />
-          </section>
+          <OptionHeader 
+            text="Companies" 
+            options={[<OptionButton key="add-company" Icon={FaPlus} OptionContent={CreateCompanyForm} />]}
+          />
           <section className="w-full h-[90%] overflow-scroll flex flex-col px-2">
             {
             (companies.length) ? 
