@@ -2,8 +2,8 @@ import React from 'react'
 
 import { FaTrash, FaPencilAlt } from "react-icons/fa"
 
-function Position({position}) {
-
+function Position({elem}) {
+  const position = elem;
   const {name, source, url, description} = position;
 
   return (

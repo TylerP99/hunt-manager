@@ -1,8 +1,8 @@
 import React from 'react'
 import { FaTrash, FaPencilAlt } from "react-icons/fa"
 
-function Connection({connection}) {
-
+function Connection({elem}) {
+  const connection = elem
   const {name, role} = connection;
 
   return (

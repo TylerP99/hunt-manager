@@ -12,7 +12,8 @@ import SettingsMenu from '../components/SettingsMenu';
 import CreatePositionForm from '../components/forms/CreatePositionForm';
 import CreateConnectionForm from '../components/forms/CreateConnectionForm';
 import OptionHeader from '../components/OptionHeader';
-
+import List from "../components/lists/List";
+ 
 
 function Company({companies}) {
 
@@ -46,44 +47,22 @@ function Company({companies}) {
           </section>
           <p>A large scale video sharing company, owned by Google</p>
         </section>
-        <section
-          className="mb-6"
-        >
-          <OptionHeader 
-            text="Positions"
-            options={[<OptionButton key="create-position" Icon={FaPlus} OptionContent={CreatePositionForm} />]}
-          />
-          <div 
-            className="max-h-[600px] overflow-y-scroll"
-          >
-            {
-              (company.positions.length) ?
-              company.positions.map(x => <Position id={x.name} position={x} />)
-              :
-              <p
-              className="w-fit mx-auto text-gray-500 text-xl"
-            >No companies</p>
-            }
-          </div>
-        </section>
-        <section
-          className="mb-6"
-        >
-          <OptionHeader 
-            text="Connections"
-            options={[<OptionButton key="create-connection" Icon={FaPlus} OptionContent={CreateConnectionForm} />]}
-          />
-          <div>
-            {
-              (company.connections.length) ?
-              company.connections.map(x => <Connection id={x.name} connection={x} />)
-              :
-              <p
-              className="w-fit mx-auto text-gray-500 text-xl"
-            >No companies</p>
-            }
-          </div>
-        </section>
+        
+        <List 
+          elements={company.positions}
+          Card={Position}
+          options={[<OptionButton key="create-position" Icon={FaPlus} OptionContent={CreatePositionForm} />]}
+          headerText="Positions"
+          emptyText="No positions"
+        />
+
+        <List 
+        elements={company.connections}
+        Card={Connection}
+        options={[<OptionButton key="create-connection" Icon={FaPlus} OptionContent={CreateConnectionForm} />]}
+        headerText="Connections"
+        emptyText="No connections"
+        />
     </section>
   )
 }
