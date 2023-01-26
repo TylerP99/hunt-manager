@@ -68,7 +68,8 @@ function CreatePositionForm() {
             placeholder='Brief Description of Position'
             rows="3"
             onChange={handleChange}
-          >{formData.description}</textarea>
+            value={formData.description}
+          />
         </section>
 
         <section

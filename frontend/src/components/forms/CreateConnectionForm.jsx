@@ -70,7 +70,8 @@ function CreateConnectionForm() {
             placeholder='Brief about of Connection'
             rows="3"
             onChange={handleChange}
-          >{formData.about}</textarea>
+            value={formData.description}
+          />
         </section>
 
         <section

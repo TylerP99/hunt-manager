@@ -67,7 +67,8 @@ function CreateCompanyForm() {
             placeholder='Brief Description of Company'
             rows="3"
             onChange={handleChange}
-          >{formData.description}</textarea>
+            value={formData.description}
+          />
         </section>
 
         <section
