@@ -10,7 +10,7 @@ function CompanyCard({elem}) {
   let positionCount = company.positions.length-1;
 
   return(
-    <section className="w-full h-40 mb-5 shadow-xl p-5 bg-white">
+    <section className="w-full h-40 mb-5 border-2 p-5 bg-white">
       <h2 className="text-lg mb-3">
         <Link
           to={`/companies/${company._id}`}
