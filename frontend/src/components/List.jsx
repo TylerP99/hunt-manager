@@ -1,10 +1,10 @@
 import OptionHeader from './OptionHeader';
 
-function List({elements, Card, options, headerText, emptyText}) {
+function List({elements, Card, options, headerText, emptyText, className}) {
     console.log(elements, Card, options, headerText, emptyText);
   return (
     <div
-    className="mx-auto w-full h-[300px] mb-10 py-2"
+    className={"mx-auto w-full h-[300px] mb-10 py-2" + " " + className}
     >
         <OptionHeader text={headerText} options={options} />
         <section className="overflow-scroll h-[90%] pr-2 flex flex-col">

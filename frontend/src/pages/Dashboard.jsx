@@ -70,8 +70,9 @@ function Dashboard({companies}) {
         Hello, <span className="font-bold ml-1.5 text-orange">Tyler</span>!
       </h1>
 
-      <section className="w-[95%] flex flex-col mx-auto">
+      <section className="w-[95%] flex flex-col justify-between mx-auto md:flex-row">
         <List
+        className="md:w-[45%]"
         elements={tasks}
         Card={TaskCard}
         headerText="Upcoming Tasks"
@@ -79,6 +80,7 @@ function Dashboard({companies}) {
         />
 
         <List
+        className="md:w-[45%]"
         elements={companies}
         Card={CompanyCard}
         options={[<OptionButton key="add-company" Icon={FaPlus} OptionContent={CreateCompanyForm} />]}
