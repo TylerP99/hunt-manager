@@ -1,5 +1,9 @@
 import React from 'react'
-import { FaTrash, FaPencilAlt } from "react-icons/fa"
+import { FaTrash, FaPencilAlt } from "react-icons/fa";
+
+import EditConnectionForm from "../forms/EditConnectionForm";
+import DeleteConnectionForm from "../forms/DeleteConnectionForm";
+import OptionButton from '../OptionButton';
 
 function Connection({elem}) {
   const connection = elem
@@ -16,11 +20,13 @@ function Connection({elem}) {
         <div
           className='flex items-center gap-3'
         >
-          <FaPencilAlt
-            className='cursor-pointer'
+          <OptionButton 
+            Icon={FaPencilAlt}
+            OptionContent={EditConnectionForm}
           />
-          <FaTrash
-            className='cursor-pointer'
+          <OptionButton 
+            Icon={FaTrash}
+            OptionContent={DeleteConnectionForm}
           />
         </div>
       </section>

@@ -1,6 +1,10 @@
 import React from 'react'
 
-import { FaTrash, FaPencilAlt } from "react-icons/fa"
+import { FaTrash, FaPencilAlt } from "react-icons/fa";
+
+import EditPositionForm from "../forms/EditPositionForm";
+import DeletePositionForm from "../forms/DeletePositionForm";
+import OptionButton from "../OptionButton";
 
 function Position({elem}) {
   const position = elem;
@@ -19,11 +23,13 @@ function Position({elem}) {
         <div
           className='flex items-center gap-3'
         >
-          <FaPencilAlt
-            className='cursor-pointer'
+          <OptionButton 
+            Icon={FaPencilAlt}
+            OptionContent={EditPositionForm}
           />
-          <FaTrash
-            className='cursor-pointer'
+          <OptionButton 
+            Icon={FaTrash}
+            OptionContent={DeletePositionForm}
           />
         </div>
       </section>
