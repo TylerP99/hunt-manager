@@ -7,7 +7,7 @@ function List({elements, Card, options, headerText, emptyText}) {
     className="mx-auto w-full h-[300px] mb-10 py-2"
     >
         <OptionHeader text={headerText} options={options} />
-        <section className="overflow-scroll h-[90%] px-2">
+        <section className="overflow-scroll h-[90%] px-2 flex flex-col">
           {
           (elements.length) ? 
           elements.map((x) => <Card elem={x} key={x._id} />)
