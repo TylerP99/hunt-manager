@@ -10,5 +10,7 @@ router.use("/positions", require("./apis/position.js"));
 
 router.use("/users", require("./apis/user.js"));
 
+router.use("/auth", require("./apis/auth.js"));
+
 
 module.exports = router;
