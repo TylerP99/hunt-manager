@@ -135,10 +135,10 @@ const UserController = {
         );
     }),
 
-    logoutUser: (req, res, next) => {
+    logoutUser: AsyncHandler( async (req, res, next) => {
         res.clearCookie("refreshToken");
         res.status(200).json([{msg: "Success"}]);
-    },
+    }),
 
     /*
     @desc:    
