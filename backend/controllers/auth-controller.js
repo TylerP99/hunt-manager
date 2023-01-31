@@ -100,6 +100,11 @@ const logoutUser = AsyncHandler( async (req, res) => {
     return res.status(200).json({message: "Success"});
 });
 
+/*
+    @desc:    Creates a json web token that holds some passed data, for the purpose of use as a refresh token for allowing the generation of access tokens
+    @params:
+    @returns:
+*/
 const genRefreshToken = (data) => {
     if(typeof data !== "object") throw(new Error("data must be an object"));
     return jwt.sign(data, process.env.JWT_REFRESH_SECRET, {expiresIn: "1d"});
