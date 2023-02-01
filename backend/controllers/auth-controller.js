@@ -102,8 +102,8 @@ const logoutUser = AsyncHandler( async (req, res) => {
 
 /*
     @desc:    Creates a json web token that holds some passed data, for the purpose of use as a refresh token for allowing the generation of access tokens
-    @params:
-    @returns:
+    @params:  data - An object containing data to be stored within the JWT
+    @returns: The signed JWT containing "data" that will expire in one day
 */
 const genRefreshToken = (data) => {
     if(typeof data !== "object") throw(new Error("data must be an object"));
