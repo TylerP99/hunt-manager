@@ -73,8 +73,15 @@ const refreshUser = AsyncHandler( async (req, res) => {
     if(!refreshToken) return res.status(401).json({message: "Not authorized, no refresh token"});
 
     // Verify cookie is good
-    jwt.verify(refreshToken, process.env.JWT_REFRESH_SECRET, (err, decoded) => {
-        if(err) return res.status(401).json({message: "Not authorized"});
+    jwt.verify(
+        refreshToken, 
+        process.env.JWT_REFRESH_SECRET, 
+        AsyncHandler( async (err, decoded) => {
+        if(err) return res.status(403).json({message: "Forbidden"});
+
+        const user = await User.find({email: decoded.email});
+
+        if(!user) return res.status(401).json({message: "Unauthorized"});
 
         const accessToken = accessToken({
             userID: decoded.userID,
@@ -83,7 +90,7 @@ const refreshUser = AsyncHandler( async (req, res) => {
         })
 
         return res.status(200).json({ accessToken });
-    })
+    }))
 
     return;
 });
