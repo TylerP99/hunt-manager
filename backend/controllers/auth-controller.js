@@ -64,7 +64,7 @@ const authenticateUser = AsyncHandler( async (req, res) => {
     @route:   GET /api/auth/refresh
     @access:  Public
 */
-const refreshUser = AsyncHandler( async (req, res) => {
+const refreshUser = (req, res) => {
     console.log("Refresh user");
 
     const refreshToken = req.cookies?.refreshToken;
@@ -84,16 +84,16 @@ const refreshUser = AsyncHandler( async (req, res) => {
         if(!user) return res.status(401).json({message: "Unauthorized"});
 
         const accessToken = accessToken({
-            userID: decoded.userID,
-            username: decoded.username,
-            email: decoded.email,
+            userID: user.userID,
+            username: user.username,
+            email: user.email,
         })
 
         return res.status(200).json({ accessToken });
     }))
 
     return;
-});
+};
 
 /*
     @desc:    Logs a user out and deletes their refresh token
@@ -102,6 +102,7 @@ const refreshUser = AsyncHandler( async (req, res) => {
 */
 const logoutUser = AsyncHandler( async (req, res) => {
     console.log("Logout user");
+    if(!req.cookies?.refreshToken) return res.status(204);
     // Clear refresh token cookie if it exists
     res.clearCookie("refreshToken");
     return res.status(200).json({message: "Success"});
