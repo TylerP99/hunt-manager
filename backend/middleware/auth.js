@@ -22,10 +22,10 @@ module.exports = {
                 // If token is invalid, respond
                 if(err) return res.status(401).json([{msg: "Not authorized"}]);
 
-                // Set user
+                // Set user from token info
                 req.user = decoded.user;
 
-                // Do next thingy
+                // Do next thing
                 next();
         });
     },
