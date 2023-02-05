@@ -19,7 +19,7 @@ const authenticateUser = AsyncHandler( async (req, res) => {
     if(!email || !password) return res.status(400).json({message: "All fields are required"});
 
     // Check if email exists
-    const user = await User.find({email: email});
+    const user = await User.findOne({email: email});
 
     if(!user) return res.status(401).json({message: "That email was not found"});
 
@@ -83,7 +83,7 @@ const refreshUser = (req, res) => {
 
         if(!user) return res.status(401).json({message: "Unauthorized"});
 
-        const accessToken = accessToken({
+        const accessToken = genAccessToken({
             userID: user.userID,
             username: user.username,
             email: user.email,
@@ -120,7 +120,7 @@ const genRefreshToken = (data) => {
 
 const genAccessToken = (data) => {
     if(typeof data !== "object") throw(new Error("data must be an object"));
-    return jwt.sign(data, process.env.JWT_ACCESS_SECRET, {expiresIn: "15m"});
+    return jwt.sign(data, process.env.JWT_ACCESS_SECRET, {expiresIn: "15s"});
 }
 
 module.exports = {
