@@ -21,7 +21,8 @@ const {errorHandler} = require("./middleware/errorHandler");
 
 // CORS
 const cors = require("cors");
-app.use(cors());
+const corsOptions = require("./config/corsSettings");
+app.use(cors(corsOptions));
 
 // Body middleware
 app.use(express.json());

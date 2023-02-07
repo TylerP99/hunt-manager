@@ -1,6 +1,16 @@
-import {useState} from "react";
+import { useState, useRef, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+
+import { setCredentials } from "../features/auth/authSlice";
+import { useLoginMutation } from "../features/auth/authApiSlice";
 
 function Login() {
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const userRef = useRef();
+  const errorRef = useRef();
 
   const inputStyles = "py-2 px-3 border focus:border-lightBlue border-2";
   const labelStyles = "mb-1";
@@ -13,8 +23,23 @@ function Login() {
     password: "",
   })
 
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const [login, {isLoading}] = useLoginMutation();
+
   // Form state destructured for better readablilty and less repeating
   const {email, password} = formData;
+
+
+  useEffect(() => {
+    userRef.current.focus();
+  }, []);
+
+  useEffect(() => {
+    setErrorMessage("");
+  }, [email, password]);
+
+
 
   // Change function for managing form state as controlled elements
   const onChange = (e) => {
@@ -25,14 +50,42 @@ function Login() {
   }
 
   // Submit function for form
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
-    console.log("Submit");
+
+    try{
+      const userData = await login(formData).unwrap();
+      console.log(userData);
+      dispatch(setCredentials({...userData, email}));
+      setFormData({email: "", password: ""});
+      navigate("/dashboard");
+    }
+    catch(err) {
+      if(!err?.originalStatus) {
+        setErrorMessage("No server response");
+      }
+      else if(err.originalStatus === 400) {
+        setErrorMessage("Incorrect email or password");
+      }
+      else if(err.originalStatus === 401) {
+        setErrorMessage("Unauthorized");
+      }
+      else {
+        setErrorMessage("Login failed");
+      }
+      errorRef.current.focus();
+    }
   }
 
   return (
     <>
     <section className="text-xl max-w-7xl mx-auto">
+      <p 
+      ref={errorRef}
+      className={"" + " " + (errorMessage || "hidden")}
+      >
+        {errorMessage}
+      </p>
       <form 
       className="max-w-4xl mx-auto p-10 pt-7 border-4 border-blue rounded-xl"
       onSubmit={onSubmit}>
@@ -44,6 +97,7 @@ function Login() {
         <section className={formGroupStyles}>
           <label className={labelStyles} htmlFor="email">Email:</label>
             <input
+              ref={userRef}
               className={inputStyles}
               id="email"
               name="email"

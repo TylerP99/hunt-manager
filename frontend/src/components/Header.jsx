@@ -1,8 +1,10 @@
 import { useState } from "react";
+import { useSelector } from "react-redux";
 
 import { FaSignInAlt, FaSignOutAlt, FaUser } from "react-icons/fa"
 
 import { Link } from "react-router-dom";
+import { getCurrentUser } from "../features/auth/authSlice";
 
 const headerContainerStyles = "text-lg max-w-full p-2 mb-10 shadow-md";
 
@@ -16,11 +18,13 @@ const linkStyles = "w-fit flex items-center space-x-2 p-1 hover:text-lightBlue";
 
 function Header() {
 
+  const user = useSelector(getCurrentUser);
+
   const [navOpen, setNavOpen] = useState(false);
 
   const toggleNav = () => setNavOpen(!navOpen);
 
-  const signedIn = false;
+  const signedIn = user ? true : false;
   return (
     <header className={headerContainerStyles}>
         <nav className="relative container mx-auto p-6">

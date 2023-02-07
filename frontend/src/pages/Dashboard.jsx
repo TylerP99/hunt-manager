@@ -1,3 +1,7 @@
+import { useSelector } from "react-redux";
+import { getCurrentUser, getCurrentToken } from "../features/auth/authSlice";
+
+import {Link} from "react-router-dom";
 import {MdWavingHand} from "react-icons/md";
 import {FaPlus} from "react-icons/fa";
 
@@ -62,12 +66,14 @@ function Dashboard({companies}) {
     }
   ];
 
+  const user = useSelector(getCurrentUser);
+
   return (
     <section className="">
       
       <h1 className="text-3xl ml-10 mb-6 flex items-center">
         <MdWavingHand className="mr-4 text-blue" />
-        Hello, <span className="font-bold ml-1.5 text-orange">Tyler</span>!
+        Hello, <span className="font-bold ml-1.5 text-orange">{user.username}</span>!
       </h1>
 
       <section className="w-[95%] flex flex-col justify-between mx-auto md:flex-row">

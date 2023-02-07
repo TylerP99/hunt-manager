@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:5000/api/user/";
+const API_URL = "http://localhost:5000/api/auth/";
 
 // Register user
 const register = async (userData) => {
@@ -32,6 +32,8 @@ const logout = async () => {
 
 const authService = {
     register,
+    login,
+    logout,
 }
 
 export default authService;

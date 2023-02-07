@@ -3,8 +3,6 @@ import {useSelector, useDispatch} from "react-redux";
 import {useNavigate} from "react-router-dom";
 import {toast} from "react-toastify";
 
-import {register, reset} from "../features/auth/authSlice";
-
 
 function Register() {
 
@@ -44,7 +42,7 @@ function Register() {
     }
 
     // Reset state
-    dispatch(reset);
+    //dispatch(reset);
   }, [user, isError, isSuccess, message, navigate, dispatch]);
 
   // Change function for managing form state as controlled elements
@@ -70,7 +68,7 @@ function Register() {
             password2,
         }
 
-        dispatch(register(userData));
+        //dispatch(register(userData));
     }
   }
 

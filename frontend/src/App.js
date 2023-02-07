@@ -11,6 +11,8 @@ import Company from "./pages/Company";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 
+import RequireAuth from "./features/auth/RequireAuth";
+
 function App() {
 
   const companies = [
@@ -203,8 +205,10 @@ function App() {
               <Route path="/" element={<Landing/>} />
               <Route path="/register" element={<Register/>} />
               <Route path="/login" element={<Login/>} /> 
-              <Route path="/dashboard" element={<Dashboard companies = {companies} />} />
-              <Route path="/companies/:id" element={<Company companies = {companies} />} />
+              <Route element={<RequireAuth/>} >
+                <Route path="/dashboard" element={<Dashboard companies = {companies} />} />
+                <Route path="/companies/:id" element={<Company companies = {companies} />} />
+              </Route>
             </Routes>
           </main>
           <Footer />
