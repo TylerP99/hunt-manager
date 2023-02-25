@@ -201,7 +201,6 @@ function App() {
           <main 
             className="max-w-7xl mx-auto w-[95%]"
           >
-
             <Routes>
               <Route path="/" element={<Landing/>} />
               <Route path="/register" element={<Register/>} />
