@@ -6,6 +6,7 @@ import {toast} from "react-toastify";
 
 function Register() {
 
+  // Styles
   const inputStyles = "py-2 px-3 border focus:border-lightBlue border-2";
   const labelStyles = "mb-1";
   const formGroupStyles = "flex flex-col mb-5";
