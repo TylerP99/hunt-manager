@@ -57,20 +57,6 @@ function Register() {
   // Submit function for form
   const onSubmit = (e) => {
     e.preventDefault();
-    
-    if(password !== password2) {
-        toast.error("Passwords must match")
-    }
-    else {
-        const userData = {
-            username, 
-            email, 
-            password,
-            password2,
-        }
-
-        //dispatch(register(userData));
-    }
   }
 
   return (
