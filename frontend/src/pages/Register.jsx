@@ -57,6 +57,7 @@ function Register() {
   // Submit function for form
   const onSubmit = (e) => {
     e.preventDefault();
+    
   }
 
   return (
