@@ -5,7 +5,9 @@ function Footer() {
     <footer
     className="w-full mt-auto p-6 bg-slate-200"
     >
-        Footer
+        <section>
+          Made by Tyler Perata
+        </section>
     </footer>
   )
 }
