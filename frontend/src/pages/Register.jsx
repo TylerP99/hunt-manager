@@ -58,6 +58,13 @@ function Register() {
   const onSubmit = (e) => {
     e.preventDefault();
     
+    // Check input data
+
+    // Send to redux
+
+    // If success, navigate away
+
+    // If failed, display error
   }
 
   return (
