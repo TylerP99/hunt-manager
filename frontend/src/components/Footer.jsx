@@ -7,6 +7,8 @@ function Footer() {
     >
         <section>
           Made by Tyler Perata
+          @TylerP99
+          Github
         </section>
     </footer>
   )
